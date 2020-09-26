@@ -4,7 +4,7 @@ title: The Core Project
 category: Tutorials
 order: 2
 ---
-MvvmCross applications normally consist on:
+MvvmCross applications normally consist of:
 
 - A 'Core' project in the form of a .NET Standard library, which will contain all the shared code (so you want to maximize the amount of code placed in this project). The _Core_ will contain Models, ViewModels, Services, Converters, ...
 - One 'Platform' project per targeted platform. These projects will contain some framework initialization code, Views and SDK dependant code.
@@ -74,7 +74,7 @@ At a sketch level, we want a user interface that:
     - A feeling for how much tip we'd like to leave (the generosity)
 - Has an output for the calculated tip to leave
 
-To represent this user interface we need to build a 'model' for it. In other words, we need a `ViewModel`.
+To represent this user interface, we need to build a 'model' for it. In other words, we need a `ViewModel`.
 
 Within MvvmCross, all ViewModels _should_ inherit from `MvxViewModel`.
 
@@ -253,9 +253,9 @@ Mvx.IoCProvider.RegisterType<ICalculationService, CalculationService>();
 
 The previous line tells the IoC Container that whenever any code requests an `ICalculationService` reference, an object of type `CalculationService` should be created and returned.
 
-Also note that the single static class `Mvx` acts as a single place for both registering and resolving interfaces and their implementations.
+Also, note that the single static class `Mvx` acts as a single place for both registering and resolving interfaces and their implementations.
 
-Within the App class we also decide that we want the app to start with the `TipViewModel`:
+Within the App class, we also decide that we want the app to start with the `TipViewModel`:
 
 ```c#
 RegisterAppStart<TipViewModel>();
@@ -263,7 +263,7 @@ RegisterAppStart<TipViewModel>();
 
 The previous line tells the MvvmCross framework that `TipViewModel` should be the first ViewModel / View pair that should appear on foreground when the app starts.
 
-In summary, this is what App.cs should look like:
+In summary, this is what `App.cs` should look like:
 
 ```c#
 using MvvmCross;
@@ -295,7 +295,7 @@ Just to recap the steps we've followed:
 4. We added a `TipViewModel` which:
   - Inherits from `MvxViewModel`
   - Declares a dependency on `ICalculationService` on its constructor 
-  - Presents a number of public properties each of which called `RaisePropertyChanged` internally
+  - Presents a number of public properties, each of which called `RaisePropertyChanged` internally
 5. We added an `App` which:
   - Inherits from `MvxApplication`
   - Registers the `ICalculationService`/`CalculationService` pair
